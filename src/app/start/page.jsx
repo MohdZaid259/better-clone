@@ -11,57 +11,60 @@ import ll3 from '@/assets/start/ll3.png'
 
 function page() {
   return (
-    <div>
-      <nav>
-        <img src={lLogo.src} alt="" />
-        <div>
+    <div className='px-40'>
+      <nav className='flex justify-between items-center my-8'>
+        <img className='w-20' src={lLogo.src} alt="" />
+        <div className='flex justify-center gap-3 items-center'>
           <img src={lcall.src} alt="" />
           <span>Need help? Call (415) 523 8837</span>
         </div>
       </nav>
       <div>
-        <hr className='border-2'/>
+        <div className='border-2'></div>
         <img className='w-12 rounded-full' src={last.src} alt="" />
       </div>
-      <div>
-        <span className='text-4xl font-semibold text-gray-800'>Hi, I'm Betsy! What can I help you with?</span>
-        <div>
-          <img src={ll1.src} alt="" />
-          <span>Buying a home</span>
+      <div className='flex flex-col justify-center items-center gap-5'>
+        <div className='text-5xl font-semibold text-gray-800'>Hi, I'm Betsy!</div>
+        <div className='text-5xl font-semibold text-gray-800'>What can I help you with?</div>
+        <div className='flex justify-start items-center border-4 hover:border-green-800 hover:border-4 rounded-md px-8 py-2 gap-5 w-1/2 mt-4'>
+          <img className='w-10' src={ll1.src} alt="" />
+          <span className='font-semibold text-lg'>Buying a home</span>
         </div>
-        <div>
+        <div className='flex justify-start items-center border-4 hover:border-green-800 hover:border-4 rounded-md px-8 py-2 gap-5 w-1/2'>
           <img src={ll2.src} alt="" />
-          <span>Refinance my mortgage</span>
+          <span className='font-semibold text-lg'>Refinance my mortgage</span>
         </div>
-        <div>
+        <div className='flex justify-start items-center border-4 hover:border-green-800 hover:border-4 rounded-md px-8 py-2 gap-5 w-1/2'>
           <img src={ll3.src} alt="" />
-          <span>Get cash from my home</span>
+          <span className='font-semibold text-lg'>Get cash from my home</span>
         </div>
       </div>
-      <div>
-        <div>
-        <span>$100B</span>
-        <span>home loans funded entirely online</span>
+      <div className='flex justify-center items-center my-16 gap-8'>
+        <div className='flex flex-col gap-3'>
+        <span className='block text-3xl font-semibold text-center'>$100B</span>
+        <span className='block text-sm text-gray-500 text-center'>home loans funded entirely online</span>
         </div>
-        <div>
-        <span>400K</span>
-        <span>Customers who chose a Better Mortgage</span>
+        <div className='flex flex-col gap-3'>
+        <span className='block text-3xl font-semibold text-center'>400K</span>
+        <span className='block text-sm text-gray-500 text-center'>Customers who chose a Better Mortgage</span>
         </div>
       </div>
-      <div>
-        <span>After a few questions, you'll unlock:</span>
-        <div>
-          <img src={l1.src} alt="" />
-          <span>Custom mortgage rates</span>
+      <div className='flex justify-center items-center mb-20'>
+      <div className='bg-[#F0F7F1] w-1/2 flex justify-center items-center flex-col gap-4 p-5'>
+        <span className='text-sm text-gray-500 text-center'>After a few questions, you'll unlock:</span>
+        <div className='flex justify-start items-center gap-3'>
+          <img className='w-5' src={l1.src} alt="" />
+          <span className='text-sm text-gray-500'>Custom mortgage rates</span>
         </div>
-        <div>
-          <img src={l2.src} alt="" />
-          <span>Exclusive offers</span>
+        <div className='flex justify-start items-center gap-3'>
+          <img className='w-5' src={l2.src} alt="" />
+          <span className='text-sm text-gray-500'>Exclusive offers</span>
         </div>
-        <div>
-          <img src={l3.src} alt="" />
-          <span>A personalized dashboard</span>
+        <div className='flex justify-start items-center gap-3'>
+          <img className='w-5' src={l3.src} alt="" />
+          <span className='text-sm text-gray-500'>A personalized dashboard</span>
         </div>
+      </div>
       </div>
     </div>
   )

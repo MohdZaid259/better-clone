@@ -6,25 +6,27 @@ import hstar from '@/assets/home/hstar.png'
 import Bot from "@/components/Bot";
 import trust from "@/assets/home/trust.png"
 import Testimony from '@/components/Testimony'
+import HomeFaq from '@/components/HomeFaq'
+import HomeResult from '@/components/HomeResult'
 
 export default function Home() {
   return (
     <>
     <section className="hero">
-    <div className="bg-[#004733] h-screen">
-      <div className="absolute z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3 text-9xl font-semibold">
+    <div className="bg-[#004733] min-h-screen">
+      <div className="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3 text-8xl font-semibold">
         <span className="text-[#1EE07F] text-center block">Mortgages</span>
         <span className="text-[#1EE07F] text-center block">made simple</span>
       </div>
-      <div className="flex justify-around items-center ">
+      <div className="flex justify-around items-center w-full px-60 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2">
         <div className="flex flex-col">
-          <div className="bg-[#1EE07F] inline-block px-10 py-4 rounded-3xl hover:text-white  hover:bg-transparent duration-100">Start my approval</div>
+          <div className="bg-[#1EE07F] cursor-pointer inline-block px-10 py-4 rounded-full hover:text-white hover:bg-transparent duration-100">Start my approval</div>
           <div className="flex justify-center items-center mt-2">
             <img className='w-4 h-4 invert' src={stopwatch.src} alt="" />
             <div className="mx-1 text-white text-sm">3 min | No credit impact</div>
           </div>
         </div>
-        {/* <img className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1 scale-125' src={mobile.src} alt="" /> */}
+        <img className='scale-110' src={mobile.src} alt="" />
         <div>
           <div className="flex justify-center items-center gap-1">
             <img className='w-7 h-7' src={google.src} alt="" />
@@ -44,8 +46,8 @@ export default function Home() {
     <div className='flex justify-center items-center p-28'>
       <Testimony/>
       <div className=''>
-        <h1 className="text-8xl text-gray-800 font-semibold">Find out why we’re better.</h1>
-        <div className="bg-[#004733] inline-block px-12 py-5 mt-6 mb-3 rounded-full font-semibold hover:bg-[#137b5e] text-white  hover:bg-transparent duration-100">See all our stories</div>
+        <h1 className="text-7xl text-gray-800 font-semibold">Find out why we’re better.</h1>
+        <div className="bg-[#004733] inline-block px-12 py-5 mt-6 mb-3 rounded-full font-semibold cursor-pointer hover:bg-[#178c6b] text-white duration-100">See all our stories</div>
         <div className="flex justify-start items-center gap-x-2">
           <img className="w-24" src={trust.src} alt="trust"/>
           <p className='text-gray-600 font-semibold'>Excellent 4.4 <span>out of 5</span></p>
@@ -53,6 +55,17 @@ export default function Home() {
       </div>
     </div>
     </section>
+    <section className='question'>
+    <div className='flex justify-between items-center px-16 my-10'>
+      <div>
+        <div className='text-5xl text-gray-800 font-semibold'>Got questions?</div>
+        <div className='text-5xl text-gray-800 font-semibold'>We've got answers</div>
+      </div>
+      <HomeFaq/>
+    </div>
+    <HomeResult/>
+    </section>
+    <hr/>
     </>
   );
 }

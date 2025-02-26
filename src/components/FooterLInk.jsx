@@ -5,8 +5,7 @@ import footerHome from '@/assets/footer/footerHome.png'
 function FooterLInk() {
   return (
     <div className='py-10'>
-      <hr />
-      <div className='my-10 px-40 '>
+      <div className='px-40 '>
         <img className='block w-24' src={logoInvert.src} alt="logo" />
         
         <div className='flex justify-center items-start gap-x-8'>
