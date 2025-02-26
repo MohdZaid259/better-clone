@@ -5,7 +5,7 @@ import insta from '@/assets/footer/insta.png'
 
 function Footer() {
   return (
-    <div className='text-xs px-32 flex flex-col gap-5 my-10'>
+    <div className='text-xs px-40 flex flex-col gap-5 my-10'>
       <div className='flex gap-3'>
         <a href=""><img className='w-5' src={fb.src} alt="" /></a>
         <a href=""><img className='w-5' src={insta.src} alt="" /></a>
