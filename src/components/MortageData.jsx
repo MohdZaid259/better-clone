@@ -11,7 +11,7 @@ import table from '@/assets/mortage/table.png'
 
 function MortageData() {
   return (
-    <div className="[&_*]:block w-3/4 p-10 m-auto">
+    <div className="[&_*]:block w-full sm:w-3/4 p-2 sm:p-10 m-auto">
       <hr />
       <div className='flex flex-col my-5'>
         <span className='text-2xl font-semibold text-gray-800 my-8'>How does a mortgage calculator help me?</span>

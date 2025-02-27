@@ -5,10 +5,10 @@ import footerHome from '@/assets/footer/footerHome.png'
 function FooterLInk() {
   return (
     <div className='py-10'>
-      <div className='px-40 '>
+      <div className='px-4 md:px-8 lg:px-14 xl:px-20 2xl:px-40 '>
         <img className='block w-24' src={logoInvert.src} alt="logo" />
         
-        <div className='flex justify-center items-start gap-x-8'>
+        <div className='flex flex-col md:flex-row justify-center items-start gap-x-8'>
           <div className='flex flex-col gap-y-2'>
             <span className='my-4'>Better is a family of companies serving all your homeownership needs.</span>
             <div className='flex'>
@@ -38,7 +38,7 @@ function FooterLInk() {
             <span>Get transparent rates when you shop for title insurance all in one convenient place.</span>
           </div>
 
-          <div className='flex flex-col gap-y-4'>
+          <div className='flex flex-col mt-8 sm:mt-0 gap-y-4'>
             <span className='font-semibold text-lg'>Resources</span>
             <span className=' cursor-pointer'>Home affordability calculator</span>
             <span className=' cursor-pointer'>Mortgage calculator</span>
@@ -53,7 +53,7 @@ function FooterLInk() {
             <span className=' cursor-pointer'>Get home inspection</span>
           </div>
 
-          <div className='flex flex-col gap-y-4'>
+          <div className='flex flex-col mt-8 sm:mt-0 gap-y-4'>
             <span className='font-semibold text-lg'>Company</span>
             <span className='cursor-pointer'>About Us</span>
             <span className='cursor-pointer'>Careers</span>
@@ -64,7 +64,7 @@ function FooterLInk() {
             <span className='cursor-pointer'>Investor Relations</span>
           </div>
 
-          <div className='flex flex-col gap-y-4'>
+          <div className='flex flex-col mt-8 sm:mt-0 gap-y-4'>
             <span className='font-semibold text-lg'>Contact Us</span>
             <span className='cursor-pointer'>hello@better.com</span>
             <span className='cursor-pointer'>415-523-8837</span>
@@ -77,7 +77,7 @@ function FooterLInk() {
             <span className='cursor-pointer'>Disclosures & Licensing</span>
             <span className='cursor-pointer'>Affiliated Business</span>
             <span className='cursor-pointer'>Browser Disclaimer</span>
-            <img className='-mx-4' src={footerHome.src} alt="home" />
+            <img className='-mx-4 w-24 sm:w-auto' src={footerHome.src} alt="home" />
           </div>
         </div>
       </div>
