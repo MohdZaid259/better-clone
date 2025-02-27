@@ -11,8 +11,7 @@ function MortagePage() {
   const [interestRate, setInterestRate] = useState(6.5)
   const [loanTerm, setLoanTerm] = useState(30)
   const [includeUtilities, setIncludeUtilities] = useState(true)
-  const [isUtilitiesExpanded, setIsUtilitiesExpanded] = useState(false)
-  const [copied, setCopied] = useState(false)
+  const [lengthOfLoan, setLengthOfLoan] = useState('30 years')
 
   const fixedValues = {
     water: 30,
@@ -56,216 +55,269 @@ function MortagePage() {
     setDownPayment(Math.round((value / 100) * homePrice))
   }
 
-  function handleCopyLink(){
-    const params = new URLSearchParams({
-      price: homePrice.toString(),
-      down: downPayment.toString(),
-      rate: interestRate.toString(),
-      term: loanTerm.toString(),
-      utilities: includeUtilities.toString(),
-    })
-    navigator.clipboard.writeText(`${window.location.origin}?${params.toString()}`)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold mb-4">Mortgage calculator</h1>
-        <p className="text-muted-foreground">
-          Our mortgage calculator includes key factors like homeowners association fees, property taxes, and private
-          mortgage insurance (PMI). Get the whole picture and calculate your total monthly payment.
-        </p>
-      </div>
+    <>
+      <div className="bg-[#F0F7F1]">
+        <div className="w-3/4 mx-auto p-14 space-y-8">
+          <div>
+            <h1 className="text-4xl font-semibold mb-4">Mortgage calculator</h1>
+            <p className="text-sm text-gray-600 w-3/5">
+              Our mortgage calculator includes key factors like homeowners
+              association fees, property taxes, and private mortgage insurance
+              (PMI). Get the whole picture and calculate your total monthly
+              payment.
+            </p>
+          </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <div>
-          <label className="text-sm font-medium">Home price</label>
-          <div className="mt-1.5">
-            <input
-              type="number"
-              value={homePrice}
-              onChange={(e) => setHomePrice(Number(e.target.value))}
-              className="text-2xl font-semibold"
-              prefix="$"
-            />
+          <div className="grid gap-4 grid-cols-[auto_auto_auto] items-end">
+            <div className="">
+              <label className="text-sm font-medium">Home price</label>
+              <div className="mt-1.5">
+                <input
+                  type="number"
+                  value={homePrice}
+                  onChange={(e) => setHomePrice(Number(e.target.value))}
+                  className="text-3xl outline-none border border-black rounded-md p-3 font-semibold"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium">Monthly payment</label>
+              <div className="mt-1.5 text-3xl py-3 font-semibold">
+                ${monthlyPayment.total.toLocaleString()}/mo
+              </div>
+            </div>
+
+            <span className="bg-[#017848] px-6 py-3 max-w-max rounded-lg font-semibold cursor-pointer hover:bg-[#116242] text-white duration-100">
+              Get pre-approved
+            </span>
           </div>
           <Slider
             value={[homePrice]}
-            min={100000}
-            max={2000000}
+            min={50000}
+            max={3000000}
             step={1000}
             onValueChange={([value]) => setHomePrice(value)}
-            className="mt-4"
+            className="mt-4 mx-5 "
           />
-        </div>
 
-        <div>
-          <label className="text-sm font-medium">Monthly payment</label>
-          <div className="mt-1.5 text-2xl font-semibold">${monthlyPayment.total.toLocaleString()}/mo</div>
-        </div>
-      </div>
+          <div className="flex gap-20 justify-between items-center">
+            <div className="flex gap-2 justify-center items-center">
+              <div className="bg-white hover:border-4 hover:border-green-700 border-4 px-2 rounded-md ">
+                <label className="text-xs text-gray-600">ZIP code</label>
+                <input
+                  type="text"
+                  value={zipCode}
+                  onChange={(e) => setZipCode(e.target.value)}
+                  className="font-semibold  outline-none"
+                />
+              </div>
 
-      <div className="grid gap-4 md:grid-cols-4">
-        <div>
-          <label className="text-sm font-medium">ZIP code</label>
-          <input type="text" value={zipCode} onChange={(e) => setZipCode(e.target.value)} className="mt-1.5" />
-        </div>
+              <div className="bg-white hover:border-4 hover:border-green-700 border-4 px-2 rounded-md ">
+                <label className="text-xs text-gray-600">Down payment</label>
+                <div className="relative">
+                  <input
+                    className=" outline-none"
+                    type="number"
+                    value={downPayment}
+                    onChange={(e) =>
+                      handleDownPaymentChange(Number(e.target.value))
+                    }
+                  />
+                  <input
+                    type="number"
+                    value={downPaymentPercent}
+                    onChange={(e) =>
+                      handleDownPaymentPercentChange(Number(e.target.value))
+                    }
+                    className="absolute right-0 text-end  outline-none top-0 w-24"
+                  />
+                </div>
+              </div>
+            </div>
 
-        <div>
-          <label className="text-sm font-medium">Down payment</label>
-          <div className="relative mt-1.5">
-            <input
-              type="number"
-              value={downPayment}
-              onChange={(e) => handleDownPaymentChange(Number(e.target.value))}
-              prefix="$"
-            />
-            <input
-              type="number"
-              value={downPaymentPercent}
-              onChange={(e) => handleDownPaymentPercentChange(Number(e.target.value))}
-              suffix="%"
-              className="absolute right-0 top-0 w-24"
-            />
+            <div className="flex gap-2 justify-center items-center">
+              <div className="bg-white hover:border-4 hover:border-green-700 border-4 px-2 rounded-md ">
+                <label className="text-xs text-gray-600">Interest rate</label>
+                <input
+                  type="number"
+                  value={interestRate}
+                  onChange={(e) => setInterestRate(Number(e.target.value))}
+                  suffix="%"
+                  step={0.125}
+                  className=" outline-none"
+                />
+              </div>
+
+              <div className="bg-white hover:border-4 hover:border-green-700 border-4 px-2 rounded-md ">
+                <label className="text-xs text-gray-600">Length of Loan</label>
+                <input
+                  type="string"
+                  value={lengthOfLoan}
+                  onChange={(e) => setLengthOfLoan(Number(e.target.value))}
+                  suffix="%"
+                  step={0.125}
+                  className=" outline-none"
+                />
+              </div>
+            </div>
           </div>
         </div>
-
-        <div>
-          <label className="text-sm font-medium">Interest rate</label>
-          <input
-            type="number"
-            value={interestRate}
-            onChange={(e) => setInterestRate(Number(e.target.value))}
-            suffix="%"
-            step={0.125}
-            className="mt-1.5"
-          />
-        </div>
       </div>
 
-      <div className="bg-muted/50 rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-4">Monthly payment breakdown</h2>
-        <div className="space-y-4">
-          <div className="text-2xl font-semibold">${monthlyPayment.total.toLocaleString()}/mo</div>
-
-          <div className="relative h-8 rounded-full overflow-hidden bg-muted">
+      <div className="w-3/4 m-auto p-14 flex justify-between items-start ">
+        <div className="w-2/5">
+          <h2 className="text-sm text-gray-800 font-semibold mb-4"> Monthly payment breakdown </h2>
+          <div className="space-y-4">
+            <div className="text-4xl text-gray-800 font-semibold">
+              ${monthlyPayment.total.toLocaleString()}/mo
+            </div>
+          </div>
+          
+          <div className="relative h-14 mt-10 overflow-hidden bg-muted">
             <div
-              className="absolute inset-y-0 left-0 bg-primary"
-              style={{
-                width: `${(monthlyPayment.principalAndInterest / monthlyPayment.total) * 100}%`,
+              className="absolute rounded-full inset-y-0 left-0 bg-[#017848]"
+                  style={{
+                    width: `${
+                      (monthlyPayment.principalAndInterest /
+                        monthlyPayment.total) *
+                      100
+                    }%`,
               }}
             />
             <div
-              className="absolute inset-y-0 bg-blue-500"
-              style={{
-                left: `${(monthlyPayment.principalAndInterest / monthlyPayment.total) * 100}%`,
-                width: `${(monthlyPayment.propertyTax / monthlyPayment.total) * 100}%`,
+              className="absolute rounded-full inset-y-0 bg-[#6E4CF6]"
+                  style={{
+                    left: `${
+                      (monthlyPayment.principalAndInterest /
+                        monthlyPayment.total) *
+                      100
+                    }%`,
+                    width: `${
+                      (monthlyPayment.propertyTax / monthlyPayment.total) * 100
+                    }%`,
               }}
             />
             <div
-              className="absolute inset-y-0 bg-purple-500"
-              style={{
-                left: `${((monthlyPayment.principalAndInterest + monthlyPayment.propertyTax) / monthlyPayment.total) * 100}%`,
-                width: `${(monthlyPayment.homeInsurance / monthlyPayment.total) * 100}%`,
+              className="absolute rounded-full inset-y-0 bg-[#8E8EEB]"
+                  style={{
+                    left: `${
+                      ((monthlyPayment.principalAndInterest +
+                        monthlyPayment.propertyTax) /
+                        monthlyPayment.total) *
+                      100
+                    }%`,
+                    width: `${
+                      (monthlyPayment.homeInsurance / monthlyPayment.total) * 100
+                    }%`,
               }}
             />
             <div
-              className="absolute inset-y-0 bg-yellow-500"
-              style={{
-                left: `${((monthlyPayment.principalAndInterest + monthlyPayment.propertyTax + monthlyPayment.homeInsurance) / monthlyPayment.total) * 100}%`,
-                width: `${(monthlyPayment.hoaFees / monthlyPayment.total) * 100}%`,
+              className="absolute rounded-full inset-y-0 bg-[#FFD566]"
+                  style={{
+                    left: `${
+                      ((monthlyPayment.principalAndInterest +
+                        monthlyPayment.propertyTax +
+                        monthlyPayment.homeInsurance) /
+                        monthlyPayment.total) *
+                      100
+                    }%`,
+                    width: `${
+                      (monthlyPayment.hoaFees / monthlyPayment.total) * 100
+                    }%`,
               }}
             />
             {includeUtilities && (
               <div
-                className="absolute inset-y-0 bg-red-500"
-                style={{
-                  left: `${((monthlyPayment.principalAndInterest + monthlyPayment.propertyTax + monthlyPayment.homeInsurance + monthlyPayment.hoaFees) / monthlyPayment.total) * 100}%`,
-                  width: `${(monthlyPayment.utilityTotal / monthlyPayment.total) * 100}%`,
+                className="absolute rounded-full inset-y-0 bg-[#FE8B72]"
+                    style={{
+                      left: `${
+                        ((monthlyPayment.principalAndInterest +
+                          monthlyPayment.propertyTax +
+                          monthlyPayment.homeInsurance +
+                          monthlyPayment.hoaFees) /
+                          monthlyPayment.total) *
+                        100
+                      }%`,
+                      width: `${
+                        (monthlyPayment.utilityTotal / monthlyPayment.total) * 100
+                      }%`,
                 }}
               />
             )}
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <div className="flex justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-primary" />
-                <span>Principal & interest</span>
-              </div>
-              <span className="font-medium">${monthlyPayment.principalAndInterest.toLocaleString()}</span>
-            </div>
-
-            <div className="flex justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-blue-500" />
-                <span>Property taxes</span>
-              </div>
-              <span className="font-medium">${monthlyPayment.propertyTax}</span>
-            </div>
-
-            <div className="flex justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-purple-500" />
-                <span>Homeowners insurance</span>
-              </div>
-              <span className="font-medium">${monthlyPayment.homeInsurance}</span>
-            </div>
-
-            <div className="flex justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <span>HOA fees</span>
-              </div>
-              <span className="font-medium">${monthlyPayment.hoaFees}</span>
-            </div>
-
-            <div>
+        <div className="w-1/2 ">
+            <div className="flex flex-col justify-between gap-5">
               <div className="flex justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500" />
-                  <span>Utilities</span>
+                <div className="flex items-center text-xs text-gray-800 gap-2">
+                  <div className="w-1 h-4 rounded-full bg-[#017848]" />
+                  <span>Principal & interest</span>
                 </div>
-                <span className="font-medium">${monthlyPayment.utilityTotal}</span>
+                <span className="text-sm font-medium">
+                  ${monthlyPayment.principalAndInterest.toLocaleString()}
+                </span>
               </div>
 
-              {isUtilitiesExpanded && (
-                <div className="ml-5 mt-2 space-y-2">
-                  <div className="flex justify-between">
-                    <span>Water/Sewer</span>
-                    <span className="font-medium">${fixedValues.water}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Gas</span>
-                    <span className="font-medium">${fixedValues.gas}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Internet</span>
-                    <span className="font-medium">${fixedValues.internet}</span>
-                  </div>
+              <div className="flex justify-between">
+                <div className="flex items-center text-xs text-gray-800  gap-2">
+                  <div className="w-1 h-4 rounded-full bg-[#6E4CF6]" />
+                  <span>Property taxes</span>
                 </div>
-              )}
-            </div>
-          </div>
+                <span className="border border-black p-2 px-4 rounded text-sm font-medium">
+                  $     {monthlyPayment.propertyTax}
+                </span>
+              </div>
 
-          <div className="flex items-center gap-2">
-            <label htmlFor="utilities" className="text-sm">
-              Include utilities in payment
-            </label>
-          </div>
+              <div className="flex justify-between">
+                <div className="flex items-center text-xs text-gray-800  gap-2">
+                  <div className="w-1 h-4 rounded-full bg-[#8E8EEB]" />
+                  <span>Homeowners insurance</span>
+                </div>
+                <span className="border border-black p-2 px-4 rounded text-sm font-medium">
+                  $     {monthlyPayment.homeInsurance}
+                </span>
+              </div>
+
+              <div className="flex justify-between">
+                <div className="flex items-center text-xs text-gray-800  gap-2">
+                  <div className="w-1 h-4 rounded-full bg-[#FFD566]" />
+                  <span>HOA fees</span>
+                </div>
+                <span className="border border-black p-2 px-4 rounded text-sm font-medium">
+                  $     {monthlyPayment.hoaFees}
+                </span>
+              </div>
+
+              <div>
+                <div className="flex justify-between">
+                  <div className="flex items-center text-xs text-gray-800  gap-2">
+                    <div className="w-1 h-4 rounded-full bg-[#FE8B72]" />
+                    <span>Utilities</span>
+                  </div>
+                  <span className="text-sm font-medium">
+                    ${monthlyPayment.utilityTotal}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex mt-5 gap-2 items-center justify-start">
+              <input type="checkbox" />
+              <label htmlFor="utilities" className="text-sm">
+                Include utilities in payment
+              </label>
+            </div>
+
+            <div className="p-4 bg-gray-200 rounded-md max-w-max text-sm hover:bg-gray-300 font-semibold mt-10">
+              Copy estimate link
+            </div>
         </div>
       </div>
-
-      <div className="flex gap-4">
-        <button variant="outline" onClick={handleCopyLink} className="flex items-center gap-2">
-          {copied ? "Copied!" : "Copy estimate link"}
-        </button>
-        <button>Get pre-approved</button>
-      </div>
-    </div>
-  )
+    </>
+  );
 }
 
 export default MortagePage

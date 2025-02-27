@@ -19,23 +19,23 @@ function page() {
           <span>Need help? Call (415) 523 8837</span>
         </div>
       </nav>
-      <div>
+      <div className='relative'>
         <div className='border-2'></div>
-        <img className='w-12 rounded-full' src={last.src} alt="" />
+        <img className='w-12 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full' src={last.src} alt="" />
       </div>
-      <div className='flex flex-col justify-center items-center gap-5'>
+      <div className='flex flex-col justify-center items-center mt-16 gap-5'>
         <div className='text-5xl font-semibold text-gray-800'>Hi, I'm Betsy!</div>
         <div className='text-5xl font-semibold text-gray-800'>What can I help you with?</div>
-        <div className='flex justify-start items-center border-4 hover:border-green-800 hover:border-4 rounded-md px-8 py-2 gap-5 w-1/2 mt-4'>
+        <div className='flex justify-start items-center border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] rounded-md px-8 py-2 gap-5 w-1/2'>
           <img className='w-10' src={ll1.src} alt="" />
           <span className='font-semibold text-lg'>Buying a home</span>
         </div>
-        <div className='flex justify-start items-center border-4 hover:border-green-800 hover:border-4 rounded-md px-8 py-2 gap-5 w-1/2'>
-          <img src={ll2.src} alt="" />
+        <div className='flex justify-start items-center border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] rounded-md px-8 py-2 gap-5 w-1/2'>
+          <img className='w-10' src={ll2.src} alt="" />
           <span className='font-semibold text-lg'>Refinance my mortgage</span>
         </div>
-        <div className='flex justify-start items-center border-4 hover:border-green-800 hover:border-4 rounded-md px-8 py-2 gap-5 w-1/2'>
-          <img src={ll3.src} alt="" />
+        <div className='flex justify-start items-center border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] rounded-md px-8 py-2 gap-5 w-1/2'>
+          <img className='w-10' src={ll3.src} alt="" />
           <span className='font-semibold text-lg'>Get cash from my home</span>
         </div>
       </div>
@@ -51,18 +51,20 @@ function page() {
       </div>
       <div className='flex justify-center items-center mb-20'>
       <div className='bg-[#F0F7F1] w-1/2 flex justify-center items-center flex-col gap-4 p-5'>
-        <span className='text-sm text-gray-500 text-center'>After a few questions, you'll unlock:</span>
-        <div className='flex justify-start items-center gap-3'>
+        <span className=' text-gray-500 text-center'>After a few questions, you'll unlock:</span>
+        <div className='flex flex-col gap-4'>
+        <div className='flex text-start items-center gap-3'>
           <img className='w-5' src={l1.src} alt="" />
-          <span className='text-sm text-gray-500'>Custom mortgage rates</span>
+          <span className='te text-gray-500'>Custom mortgage rates</span>
         </div>
         <div className='flex justify-start items-center gap-3'>
           <img className='w-5' src={l2.src} alt="" />
-          <span className='text-sm text-gray-500'>Exclusive offers</span>
+          <span className=' text-gray-500'>Exclusive offers</span>
         </div>
         <div className='flex justify-start items-center gap-3'>
           <img className='w-5' src={l3.src} alt="" />
-          <span className='text-sm text-gray-500'>A personalized dashboard</span>
+          <span className=' text-gray-500'>A personalized dashboard</span>
+        </div>
         </div>
       </div>
       </div>
