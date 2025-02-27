@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={``} >
-        {pathname !== "/start" && <Navbar />}
+        {pathname !== "/start" && <Navbar prop={pathname}/>}
         {children}
         <FooterLInk/>
         <Footer/>

@@ -1,3 +1,4 @@
+'use client'
 import mobile from '@/assets/home/mobile.png'
 import stopwatch from '@/assets/home/stopwatch.png'
 import google from '@/assets/home/google.png'
@@ -8,8 +9,15 @@ import trust from "@/assets/home/trust.png"
 import Testimony from '@/components/Testimony'
 import HomeFaq from '@/components/HomeFaq'
 import HomeResult from '@/components/HomeResult'
+import { useState } from 'react'
 
 export default function Home() {
+  const [prop,setProp] = useState('product')
+
+  function getData(data){
+    setProp(data)
+  }
+
   return (
     <>
     <section className="hero">
@@ -61,9 +69,9 @@ export default function Home() {
         <div className='text-5xl text-gray-800 font-semibold'>Got questions?</div>
         <div className='text-5xl text-gray-800 font-semibold'>We've got answers</div>
       </div>
-      <HomeFaq/>
+      <HomeFaq getData={getData}/>
     </div>
-    <HomeResult/>
+    <HomeResult prop={prop}/>
     </section>
     <hr/>
     </>

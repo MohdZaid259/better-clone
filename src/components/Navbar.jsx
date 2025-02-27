@@ -4,15 +4,15 @@ import logo from '@/assets/nav/logo.png'
 import call from '@/assets/nav/call.png'
 import {buyList, RefinanceList, HELOCList, rateList, betterList, callList} from '@/assets/navList.js'
 import Dropdown from './Dropdown'
+import logoBnw from '@/assets/nav/logoBnw.png'
 
-function Navbar() {
+function Navbar({prop}) {
   const [list, setList] = useState(null)
 
-
   return (
-    <div className='flex justify-between items-center py-5 sticky z-50 left-0 top-0 bg-[#004733] text-white px-12'>
-      <div className='flex justify-center text-sm items-center gap-x-8 '>
-        <img className='w-20 cursor-pointer' src={logo.src} alt="logo" />
+    <div className={`flex justify-between items-center py-5 sticky z-50 left-0 top-0 ${prop=='/'?'bg-[#004733] text-white':'bg-white text-black'} px-12`}>
+      <div className='flex justify-center  items-center gap-x-8 '>
+        <img className='w-20 cursor-pointer' src={prop === "/" ? logo.src : logoBnw.src} alt="logo" />
         <span onMouseEnter={()=>setList('buy')} onMouseLeave={()=>setList(null)} className='cursor-pointer hover:bg-white hover:text-black rounded-3xl p-4 py-3'>Buy</span>
         {list == 'buy' && <Dropdown items={buyList}/>}
         <span onMouseEnter={()=>setList('refinance')} onMouseLeave={()=>setList(null)} className='cursor-pointer hover:bg-white hover:text-black rounded-3xl p-4 py-3'>Refinance</span>
