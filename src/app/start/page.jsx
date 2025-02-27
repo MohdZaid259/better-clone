@@ -11,12 +11,12 @@ import ll3 from '@/assets/start/ll3.png'
 
 function page() {
   return (
-    <div className='px-40'>
+    <div className='xl:px-40 lg:px-24 sm:px-16 px-8'>
       <nav className='flex justify-between items-center my-8'>
         <img className='w-20' src={lLogo.src} alt="" />
         <div className='flex justify-center gap-3 items-center'>
           <img src={lcall.src} alt="" />
-          <span>Need help? Call (415) 523 8837</span>
+          <span className="sm:block hidden">Need help? Call (415) 523 8837</span>
         </div>
       </nav>
       <div className='relative'>
@@ -24,17 +24,17 @@ function page() {
         <img className='w-12 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full' src={last.src} alt="" />
       </div>
       <div className='flex flex-col justify-center items-center mt-16 gap-5'>
-        <div className='text-5xl font-semibold text-gray-800'>Hi, I'm Betsy!</div>
-        <div className='text-5xl font-semibold text-gray-800'>What can I help you with?</div>
-        <div className='flex justify-start items-center border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] rounded-md px-8 py-2 gap-5 w-1/2'>
+        <div className='lg:text-5xl text-3xl font-semibold text-gray-800'>Hi, I'm Betsy!</div>
+        <div className='lg:text-5xl text-3xl font-semibold text-gray-800'>What can I help you with?</div>
+        <div className='flex justify-start items-center border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] rounded-md px-8 py-2 gap-5 md:w-1/2 w-full'>
           <img className='w-10' src={ll1.src} alt="" />
           <span className='font-semibold text-lg'>Buying a home</span>
         </div>
-        <div className='flex justify-start items-center border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] rounded-md px-8 py-2 gap-5 w-1/2'>
+        <div className='flex justify-start items-center border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] rounded-md px-8 py-2 gap-5 md:w-1/2 w-full'>
           <img className='w-10' src={ll2.src} alt="" />
           <span className='font-semibold text-lg'>Refinance my mortgage</span>
         </div>
-        <div className='flex justify-start items-center border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] rounded-md px-8 py-2 gap-5 w-1/2'>
+        <div className='flex justify-start items-center border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] rounded-md px-8 py-2 gap-5 md:w-1/2 w-full'>
           <img className='w-10' src={ll3.src} alt="" />
           <span className='font-semibold text-lg'>Get cash from my home</span>
         </div>
@@ -50,7 +50,7 @@ function page() {
         </div>
       </div>
       <div className='flex justify-center items-center mb-20'>
-      <div className='bg-[#F0F7F1] w-1/2 flex justify-center items-center flex-col gap-4 p-5'>
+      <div className='bg-[#F0F7F1] md:w-1/2 w-full flex justify-center items-center flex-col gap-4 p-5'>
         <span className=' text-gray-500 text-center'>After a few questions, you'll unlock:</span>
         <div className='flex flex-col gap-4'>
         <div className='flex text-start items-center gap-3'>
@@ -72,4 +72,4 @@ function page() {
   )
 }
 
-export default page
+export default page

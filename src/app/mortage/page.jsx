@@ -57,68 +57,59 @@ function MortagePage() {
 
   return (
     <>
-      <div className="bg-[#F0F7F1]">
-        <div className="w-3/4 mx-auto p-14 space-y-8">
+      <div className="bg-[#F0F7F1] p-6 md:p-10">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <h1 className="text-3xl md:text-4xl font-semibold">Mortgage Calculator</h1>
+          <p className="text-base md:text-sm text-gray-600 md:w-3/5">
+          Our mortgage calculator includes key factors like homeowners association fees, property taxes, and PMI.
+          </p>
+
+          <div className="grid gap-4 grid-cols-1 md:grid-cols-3 items-center">
+          <div className="flex flex-col">
+            <label className="text-base md:text-sm font-medium">Home Price</label>
+            <input
+              type="number"
+              value={homePrice}
+              onChange={(e) => setHomePrice(Number(e.target.value))}
+              className="w-full text-xl md:text-3xl outline-none border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] rounded-md p-5 md:p-3  font-semibold"
+            />
+          </div>
           <div>
-            <h1 className="text-4xl font-semibold mb-4">Mortgage calculator</h1>
-            <p className="text-sm text-gray-600 w-3/5">
-              Our mortgage calculator includes key factors like homeowners
-              association fees, property taxes, and private mortgage insurance
-              (PMI). Get the whole picture and calculate your total monthly
-              payment.
-            </p>
+            <label className="text-base md:text-sm font-medium">Monthly Payment</label>
+            <div className="mt-1.5 text-lg md:text-3xl font-semibold">${monthlyPayment.total.toLocaleString()}/mo</div>
           </div>
+          <button className="bg-[#017848] px-4 py-5 md:px-6 md:py-3 rounded-lg font-semibold text-white hover:bg-[#116242] duration-100">
+            Get Pre-approved
+          </button>
+        </div>
+        
+        <Slider
+          value={[homePrice]}
+          min={50000}
+          max={3000000}
+          step={1000}
+          onValueChange={([value]) => setHomePrice(value)}
+          className="mt-4 mx-5"
+        />
 
-          <div className="grid gap-4 grid-cols-[auto_auto_auto] items-end">
-            <div className="">
-              <label className="text-sm font-medium">Home price</label>
-              <div className="mt-1.5">
-                <input
-                  type="number"
-                  value={homePrice}
-                  onChange={(e) => setHomePrice(Number(e.target.value))}
-                  className="text-3xl outline-none border border-black rounded-md p-3 font-semibold"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="text-sm font-medium">Monthly payment</label>
-              <div className="mt-1.5 text-3xl py-3 font-semibold">
-                ${monthlyPayment.total.toLocaleString()}/mo
-              </div>
-            </div>
-
-            <span className="bg-[#017848] px-6 py-3 max-w-max rounded-lg font-semibold cursor-pointer hover:bg-[#116242] text-white duration-100">
-              Get pre-approved
-            </span>
-          </div>
-          <Slider
-            value={[homePrice]}
-            min={50000}
-            max={3000000}
-            step={1000}
-            onValueChange={([value]) => setHomePrice(value)}
-            className="mt-4 mx-5 "
-          />
 
           <div className="flex gap-20 justify-between items-center">
             <div className="flex gap-2 justify-center items-center">
-              <div className="bg-white hover:border-4 hover:border-green-700 border-4 px-2 rounded-md ">
+              <div className="bg-white border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] px-2 rounded-md ">
                 <label className="text-xs text-gray-600">ZIP code</label>
                 <input
                   type="text"
                   value={zipCode}
                   onChange={(e) => setZipCode(e.target.value)}
-                  className="font-semibold  outline-none"
+                  className="font-semibold bg-transparent outline-none"
                 />
               </div>
 
-              <div className="bg-white hover:border-4 hover:border-green-700 border-4 px-2 rounded-md ">
+              <div className="bg-white border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] px-2 rounded-md ">
                 <label className="text-xs text-gray-600">Down payment</label>
                 <div className="relative">
                   <input
-                    className=" outline-none"
+                    className="bg-transparent outline-none"
                     type="number"
                     value={downPayment}
                     onChange={(e) =>
@@ -131,14 +122,14 @@ function MortagePage() {
                     onChange={(e) =>
                       handleDownPaymentPercentChange(Number(e.target.value))
                     }
-                    className="absolute right-0 text-end  outline-none top-0 w-24"
+                    className="bg-transparent absolute right-0 text-end  outline-none top-0 w-24"
                   />
                 </div>
               </div>
             </div>
 
             <div className="flex gap-2 justify-center items-center">
-              <div className="bg-white hover:border-4 hover:border-green-700 border-4 px-2 rounded-md ">
+              <div className="bg-white border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] px-2 rounded-md ">
                 <label className="text-xs text-gray-600">Interest rate</label>
                 <input
                   type="number"
@@ -146,11 +137,11 @@ function MortagePage() {
                   onChange={(e) => setInterestRate(Number(e.target.value))}
                   suffix="%"
                   step={0.125}
-                  className=" outline-none"
+                  className="bg-transparent outline-none"
                 />
               </div>
 
-              <div className="bg-white hover:border-4 hover:border-green-700 border-4 px-2 rounded-md ">
+              <div className="bg-white border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] px-2 rounded-md ">
                 <label className="text-xs text-gray-600">Length of Loan</label>
                 <input
                   type="string"
@@ -158,7 +149,7 @@ function MortagePage() {
                   onChange={(e) => setLengthOfLoan(Number(e.target.value))}
                   suffix="%"
                   step={0.125}
-                  className=" outline-none"
+                  className="bg-transparent outline-none"
                 />
               </div>
             </div>
@@ -266,7 +257,7 @@ function MortagePage() {
                   <div className="w-1 h-4 rounded-full bg-[#6E4CF6]" />
                   <span>Property taxes</span>
                 </div>
-                <span className="border border-black p-2 px-4 rounded text-sm font-medium">
+                <span className="bg-white border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] p-2 px-4 rounded text-sm font-medium">
                   $     {monthlyPayment.propertyTax}
                 </span>
               </div>
@@ -276,7 +267,7 @@ function MortagePage() {
                   <div className="w-1 h-4 rounded-full bg-[#8E8EEB]" />
                   <span>Homeowners insurance</span>
                 </div>
-                <span className="border border-black p-2 px-4 rounded text-sm font-medium">
+                <span className="bg-white border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] p-2 px-4 rounded text-sm font-medium">
                   $     {monthlyPayment.homeInsurance}
                 </span>
               </div>
@@ -286,7 +277,7 @@ function MortagePage() {
                   <div className="w-1 h-4 rounded-full bg-[#FFD566]" />
                   <span>HOA fees</span>
                 </div>
-                <span className="border border-black p-2 px-4 rounded text-sm font-medium">
+                <span className="bg-white border border-black shadow-[inset_0_0_0_0_black] transition-all duration-300 hover:shadow-[inset_0_0_0_3px_#017848] p-2 px-4 rounded text-sm font-medium">
                   $     {monthlyPayment.hoaFees}
                 </span>
               </div>

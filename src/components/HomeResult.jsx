@@ -95,36 +95,36 @@ function HomeResult({prop}) {
   },[prop])
 
   return (
-    <div className='px-16 mb-20'>
-          <div className='flex justify-center items-center gap-5'>
-            <div className='bg-[#F0F7F1] rounded-lg cursor-pointer p-5 px-8 w-[35%] flex flex-col gap-y-5'>
+    <div className='px-2 sm:px-16 mb-6 sm:mb-20'>
+          <div className='flex flex-col sm:flex-row justify-center items-center gap-5'>
+            <div className='bg-[#F0F7F1] rounded-lg cursor-pointer p-2 sm:p-5 sm:px-8 w-[35%] flex flex-col gap-y-5'>
               <span className='font-semibold text-xl block'>{item[0].title}</span>
               <img className='w-9 border-black border opacity-70 rounded-full hover:bg-red-300 p-2 hover:invert' src={right.src} alt=''/>
-              <img className='rounded-md w-4/5' src={item[0].img.src} alt=''/>
+              <img className='rounded-md w-4/5 object-cover' src={item[0].img.src} alt=''/>
             </div>
-            <div className='bg-[#F0F7F1] rounded-lg cursor-pointer p-5 px-8 w-[65%] flex'>
+            <div className='bg-[#F0F7F1] rounded-lg cursor-pointer p-2 sm:p-5 sm:px-8 w-[65%] flex'>
               <div className='flex flex-col gap-y-5'>
                 <span className='font-semibold text-xl block'>{item[1].title}<sup>1</sup></span>
                 <span>{item[1].data}<sup>1</sup></span>
-                <img className='w-9 border border-black opacity-70 rounded-full hover:bg-red-300 p-2 hover:invert' src={right.src} alt=''/>
+                <img className='w-9 border  object-cover border-black opacity-70 rounded-full hover:bg-red-300 p-2 hover:invert' src={right.src} alt=''/>
               </div>
-              <img className='rounded-md w-1/3' src={item[1].img.src} alt=''/>
+              <img className='rounded-md  object-cover w-1/3' src={item[1].img.src} alt=''/>
             </div>
           </div>
-          <div className='flex justify-center items-center gap-5 py-5'>
-            <div className='bg-[#F0F7F1] rounded-lg cursor-pointer p-5 px-8 w-[65%] flex gap-5'>
-              <img className='rounded-md w-1/3' src={item[2].img.src} alt=''/>
+          <div className='flex flex-col sm:flex-row justify-center items-center gap-5 py-5'>
+            <div className='bg-[#F0F7F1] rounded-lg cursor-pointer p-2 sm:p-5 sm:px-8 w-[65%] flex gap-5'>
+              <img className='rounded-md w-1/3 object-cover' src={item[2].img.src} alt=''/>
               <div className='flex flex-col gap-y-5'>
                 <span className='font-semibold text-xl block'>{item[2].title}<sup>1</sup></span>
                 <span>{item[2].data}<sup>3</sup></span>
-                <img className='w-9 border border-black opacity-70 rounded-full hover:bg-red-300 p-2 hover:invert' src={right.src} alt=''/>
+                <img className='w-9 border border-black  opacity-70 rounded-full hover:bg-red-300 p-2 hover:invert' src={right.src} alt=''/>
               </div>
             </div>
-            <div className='bg-[#F0F7F1] rounded-lg cursor-pointer p-5 px-8 w-[35%] flex'>
+            <div className='bg-[#F0F7F1] rounded-lg cursor-pointer p-2 sm:p-5 sm:px-8 w-[35%] flex'>
               <div className='flex flex-col gap-y-5'>
                 <span className='font-semibold text-xl block'>{item[3].title}</span>
                 <img className='w-9 border border-black opacity-70 rounded-full hover:bg-red-300 p-2 hover:invert' src={right.src} alt=''/>
-                <img className='rounded-md w-4/5' src={item[3].img.src} alt=''/>
+                <img className='rounded-md w-4/5 object-cover' src={item[3].img.src} alt=''/>
               </div>
             </div>
           </div>
